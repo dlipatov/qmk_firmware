@@ -1,0 +1,17 @@
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+SPACE_CADET_ENABLE = no
+MOUSEKEY_ENABLE = no
+
+#Audio control and System control
+EXTRAKEY_ENABLE = no
+
+ENCODER_ENABLE = no
+
+LTO_ENABLE = yes
+RGBLIGHT_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+COMBO_ENABLE = yes
+
+# Enable Bootmagic Lite
+BOOTMAGIC_ENABLE = yes
