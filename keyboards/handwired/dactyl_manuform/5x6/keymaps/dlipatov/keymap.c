@@ -99,6 +99,12 @@ const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(
 void keyboard_post_init_user(void) {
     // Enable the LED layers
     rgblight_layers = my_rgb_layers;
+
+    #ifdef CONSOLE_ENABLE
+        debug_enable=true;
+        debug_matrix=true;
+        debug_keyboard=true;
+    #endif
 }
 
 bool led_update_user(led_t led_state) {
@@ -110,6 +116,55 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     rgblight_set_layer_state(1, layer_state_cmp(state, _LOWER));
     rgblight_set_layer_state(2, layer_state_cmp(state, _RAISE));
     return state;
+}
+
+uint8_t mode;
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+#ifdef BOOTMAGIC_ENABLE
+
+   if (record->event.pressed) {
+        if(matrix_get_row(5) & (1 << 3)){
+            if(matrix_get_row(4) & (1 << 4)){
+                matrix_scan();
+                wait_ms(DEBOUNCE * 2);
+                matrix_scan();
+                dprintf("bootmagic!\n");
+                bootloader_jump();
+                return false;
+            }
+        }
+
+        if(matrix_get_row(10) & (1 << 1)){
+            if(matrix_get_row(11) & (1 << 2)){
+                matrix_scan();
+                wait_ms(DEBOUNCE * 2);
+                matrix_scan();
+                dprintf("bootmagic!\n");
+                bootloader_jump();
+                return false;
+            }
+        }
+   }
+#endif
+
+  switch (keycode) {
+    case KC_W:
+      if (record->event.pressed) {
+        mode = rgblight_get_mode();
+        rgblight_sethsv_range(HSV_MAGENTA, 0, 24);
+        dprintf("W is pressed\n");
+        // Do something when pressed
+      } else {
+          if(mode>0){
+            rgblight_mode(mode);
+          }
+      }
+      return true;
+    default:
+      return true; // Process all other keycodes normally
+  }
 }
 
 // Rotary encoder related code

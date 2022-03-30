@@ -23,8 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define EE_HANDS
 
-
-
 // Underglow
 #undef RGBLED_NUM
 #undef RGBLED_SPLIT
@@ -35,10 +33,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_SPLIT { 12, 12 }
 #define RGBLIGHT_LAYERS
 #define RGBLIGHT_LIMIT_VAL 175
-#define RGBLIGHT_EFFECT_SNAKE
-#define RGBLIGHT_EFFECT_KNIGHT
+#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLIGHT_EFFECT_BREATHING
-#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_KNIGHT+1
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_DEFAULT_HUE 246
 
