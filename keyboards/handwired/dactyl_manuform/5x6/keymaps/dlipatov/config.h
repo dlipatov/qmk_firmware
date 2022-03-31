@@ -45,13 +45,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LAYER_STATE_8BIT
 
 //Boogmagic Lite
-#ifdef BOOTMAGIC_ENABLE
-    #define BOOTMAGIC_LITE_ROW 0
-    #define BOOTMAGIC_LITE_COLUMN 0
-
-    #define BOOTMAGIC_LITE_ROW_RIGHT 6
-    #define BOOTMAGIC_LITE_COLUMN_RIGHT 5
-#endif
+#define BOOTMAGIC_LITE_ROW 0
+#define BOOTMAGIC_LITE_COLUMN 0
+#define BOOTMAGIC_LITE_ROW_RIGHT 6
+#define BOOTMAGIC_LITE_COLUMN_RIGHT 5
 
 //Tap Dance
 #define TAPPING_TERM 200

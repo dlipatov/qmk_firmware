@@ -122,49 +122,53 @@ uint8_t mode;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-#ifdef BOOTMAGIC_ENABLE
+#ifdef CONSOLE_ENABLE
+    uprintf("KL: kc: 0x%04X, col: %u, row: %u, pressed: %b, time: %u, interrupt: %b, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 
-   if (record->event.pressed) {
+    if(is_keyboard_left()){
+        dprintf("Is LEFT part\n");
+    }else{
+        dprintf("Is RIGHT part\n");
+    }
+
+    if(is_keyboard_left()){
         if(matrix_get_row(5) & (1 << 3)){
             if(matrix_get_row(4) & (1 << 4)){
-                matrix_scan();
-                wait_ms(DEBOUNCE * 2);
-                matrix_scan();
                 dprintf("bootmagic!\n");
+                eeconfig_disable();
                 bootloader_jump();
                 return false;
             }
         }
-
+    } else {
         if(matrix_get_row(10) & (1 << 1)){
             if(matrix_get_row(11) & (1 << 2)){
-                matrix_scan();
-                wait_ms(DEBOUNCE * 2);
-                matrix_scan();
                 dprintf("bootmagic!\n");
+                eeconfig_disable();
                 bootloader_jump();
                 return false;
             }
         }
-   }
+    }
 #endif
 
-  switch (keycode) {
-    case KC_W:
-      if (record->event.pressed) {
-        mode = rgblight_get_mode();
-        rgblight_sethsv_range(HSV_MAGENTA, 0, 24);
-        dprintf("W is pressed\n");
-        // Do something when pressed
-      } else {
-          if(mode>0){
-            rgblight_mode(mode);
-          }
-      }
-      return true;
-    default:
-      return true; // Process all other keycodes normally
-  }
+//   switch (keycode) {
+//     case KC_W:
+//       if (record->event.pressed) {
+//         mode = rgblight_get_mode();
+//         rgblight_sethsv_range(HSV_MAGENTA, 0, 24);
+//         dprintf("W is pressed\n");
+//         // Do something when pressed
+//       } else {
+//           if(mode>0){
+//             rgblight_mode(mode);
+//           }
+//       }
+//       return true;
+//     default:
+//       return true; // Process all other keycodes normally
+//   }
+    return true;
 }
 
 // Rotary encoder related code
