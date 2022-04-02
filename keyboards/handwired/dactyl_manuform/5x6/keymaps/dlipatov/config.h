@@ -31,13 +31,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGB_DI_PIN D1
 #define RGBLED_NUM 24    // Number of LEDs
 #define RGBLED_SPLIT { 12, 12 }
-#define RGBLIGHT_LAYERS
-#define RGBLIGHT_LIMIT_VAL 175
+#define RGBLIGHT_LIMIT_VAL 255
 #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_RAINBOW_SWIRL
 #define RGBLIGHT_SLEEP
 #define RGBLIGHT_DEFAULT_HUE 246
+#define RGBLIGHT_DEFAULT_SAT 255
+#define RGBLIGHT_DEFAULT_VAL RGBLIGHT_LIMIT_VAL
 
 
 // Layers
@@ -52,8 +53,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //Tap Dance
 #define TAPPING_TERM 200
-
-//Combo
-#define COMBO_COUNT 1
-#define EXTRA_SHORT_COMBOS
-
